@@ -1,0 +1,18 @@
+1) Sign up page - A simple page for signing up - username, password, name
+2) Sign in page - A page for signing in, self explanatory
+
+3) User profile page - A page for a user profile.  You should be able
+to post links/notes/text on your own profile page, but other users'
+pages should be read-only.  You should be able to "friend" other users
+from this page (no "friend acceptance necessary", but it should be a
+two-way relationship)
+4) News feed page - Page for viewing your news feed - this should be
+an aggregation of posts from all your friends
+5) Directory page - List of user pages, with links to their profiles
+
+user
+friends
+list of user ids
+
+when clicking add friend
+adds to both users

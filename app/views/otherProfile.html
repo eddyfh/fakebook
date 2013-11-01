@@ -1,0 +1,13 @@
+<div class="hero-unit">
+  <h1>{{viewUser.name}}</h1>
+  <p>{{viewUser.username}}</p>
+
+  <h2>Wall</h2>
+  <div ng-repeat='message in messages'>
+    <span>{{message.username}}: </span>
+    <span>{{message.post}}</span>
+  </div>
+  <div>
+    <a href='#/directory'>View all users</a>
+  </div>
+</div>
