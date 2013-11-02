@@ -5,7 +5,7 @@ var passport = require('passport');
 module.exports = function (app) {
     app.configure('development', function () {
         
-        app.set('port', process.env.PORT || 9000);
+        app.set('port', process.env.PORT || 3000);
         app.set('views', path.join(app.directory, '/app'));
         app.engine('html', require('ejs').renderFile);
         app.set('view engine', 'html');
