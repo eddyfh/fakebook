@@ -1,17 +1,17 @@
-// 'use strict';
-
 var fbClone = angular.module('fbcloneApp', [
   'fbcloneApp.controller.main',
   'fbcloneApp.controller.newAccount',
   'fbcloneApp.controller.profile',
   'fbcloneApp.controller.directory',
   'fbcloneApp.controller.otherProfile',
+  'fbcloneApp.controller.newsfeed',
+  'fbcloneApp.controller.header',
   'fbcloneApp.service.userData',
   'fbcloneApp.service.viewUserData'
   ])
   .config(function ($routeProvider) {
     // is rootScope needed below?
-    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, userData){
+    var checkLoggedin = function($q, $timeout, $http, $location, userData){
       var deferred = $q.defer();
       $http.get('/loggedIn').success(function(user){
         // Authenticated
@@ -46,11 +46,24 @@ var fbClone = angular.module('fbcloneApp', [
       })
       .when('/directory', {
         templateUrl: 'views/directory.html',
-        controller: 'DirectoryCtrl'
+        controller: 'DirectoryCtrl',
+        resolve: {
+          loggedin: checkLoggedin
+        }
       })
       .when('/otherProfile', {
         templateUrl: 'views/otherProfile.html',
-        controller: 'OtherProfileCtrl'
+        controller: 'OtherProfileCtrl',
+        resolve: {
+          loggedin: checkLoggedin
+        }
+      })
+      .when('/newsfeed', {
+        templateUrl: 'views/newsfeed.html',
+        controller: 'NewsfeedCtrl',
+        resolve: {
+          loggedin: checkLoggedin
+        }
       })
       .otherwise({
         redirectTo: '/'

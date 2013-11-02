@@ -1,19 +1,16 @@
+<div ng-include src="'views/header.html'"></div>
 <div class="hero-unit">
-  <h1>Profile page</h1>
-  <p>Name: {{user.name}}</p>
-  <p>Username: {{user.username}}</p>
+  <h1>{{user.name}} profile page</h1>
+  <h3><i>{{user.username}}<i></h3>
 
   <h2>Post a message</h2>
   <form>
     <input type='text' ng-model='userMessage'>
-    <button ng-click='postMessage(userMessage)'>Submit</button>
+    <button class='btn' ng-click='postMessage(userMessage)'>Submit</button>
   </form>
   <h2>Your wall</h2>
   <div ng-repeat='message in messages'>
     <span>{{message.username}}: </span>
     <span>{{message.post}}</span>
-  </div>
-  <div>
-    <a href='#/directory'>View all users</a>
   </div>
 </div>

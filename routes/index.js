@@ -14,11 +14,10 @@ module.exports = function (app) {
 	app.post('/newAccount', function(req,res,next){
 		var user = new User({ name: req.body.name, username: req.body.username, password: req.body.password});
 		user.save(function(err) {
-		  if(err) {
-		    throw(err);
-		  } else {
+		  if(err) throw(err);
+		  else {
 		    console.log('user: ' + user.username + " saved.");
-		    res.redirect('/#/profile');
+		    res.redirect('/');
 		  }
 		});
 	});
@@ -44,6 +43,13 @@ module.exports = function (app) {
   		res.send(docs);
   	});
   });
+  app.get('/api/fetchFriendMessages', function(req,res){
+    var friendsObj = {$in: JSON.parse(req.query.friends)};
+    Post.find({'userId': friendsObj }, function(err, docs){
+      if (err) throw(err);
+      res.send(docs);
+    });
+  });
   app.get('/api/fetchUsers', function(req,res){
   	User.find({}, function(err, docs){
   		if (err) {
@@ -52,32 +58,21 @@ module.exports = function (app) {
   		res.send(docs);
   	});
   });
+  app.post('/api/addFriend', function(req,res){
+    User.findById(req.body.userId, function(err, docs){
+      if (err) throw(err);
+      docs.friends.push(req.body.friendId);
+      docs.save();
+    });
+    User.findById(req.body.friendId, function(err, docs){
+      if (err) throw(err);
+      docs.friends.push(req.body.userId);
+      docs.save();
+    });
+  });
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.send();
+  });
 };
 
-
-    // app.get('/', function (req, res, next) {
-    //     res.render('index', {
-    //         title: 'Express'
-    //     });
-    // });
-    // app.get('/profile', function(req,res,next){
-    // 	res.redirect('/#/profile', { user: req.user });
-    // });
-    // app.get('/newAccount', function(req,res,next){
-    // 	res.redirect('/#/newAccount');
-    // });:
-
-  //   app.post('/login', function(req, res, next) {
-		//   passport.authenticate('local', function(err, user, info) {
-		//   	console.log(req.user);
-		//     if (err) { return next(err) }
-		//     if (!user) {
-		//       req.session.messages =  [info.message];
-		//       return res.redirect('/#/newAccount')
-		//     }
-		//     req.logIn(user, function(err) {
-		//       if (err) { return next(err); }
-		//       res.redirect('/#/profile');
-		//     });
-		//   })(req, res, next);
-		// });

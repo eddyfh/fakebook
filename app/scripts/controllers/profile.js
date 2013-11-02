@@ -1,5 +1,3 @@
-// 'use strict';
-
 angular.module('fbcloneApp.controller.profile', [])
   .controller('ProfileCtrl', ['$scope', '$http', 'userData', function ($scope, $http, userData) {
     $scope.user = userData.getUser();

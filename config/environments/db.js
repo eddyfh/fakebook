@@ -7,7 +7,6 @@ db.once('open', function callback() {
   console.log('Connected to DB');
 });
 
-// User Schema
 var userSchema = mongoose.Schema({
   name: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },

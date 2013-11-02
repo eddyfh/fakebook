@@ -1,10 +1,6 @@
 <div ng-include src="'views/header.html'"></div>
 <div class="hero-unit">
-  <h1>{{viewUser.name}}</h1>
-  <p>{{viewUser.username}}</p>
-  <button class='btn' ng-click='addFriend()'>Add {{viewUser.username}} as a friend</button>
-
-  <h2>Wall</h2>
+  <h1>Newsfeed</h1>
   <div ng-repeat='message in messages'>
     <span>{{message.username}}: </span>
     <span>{{message.post}}</span>

@@ -1,8 +1,9 @@
+<div ng-include src="'views/header.html'"></div>
 <div class="hero-unit">
   <h1>Fakebook Users</h1>
-  <h3>Name - username</h3>
+  <br>
   <div ng-repeat='user in users'>
     <span><b>{{user.name}}</b></span> - 
-    <span ng-click='getOtherProfile(user)'>{{user.username}}</span>
+    <a href='' ng-click='getOtherProfile(user)'>{{user.username}}</a>
   </div>
 </div>

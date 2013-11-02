@@ -1,6 +1,5 @@
 angular.module("fbcloneApp.service.viewUserData", [])
   .factory('viewUserData', ['$http', '$q', function ($http, $q) {
-
     var user;
     return {
       setViewUser: function(arg){
