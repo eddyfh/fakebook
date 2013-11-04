@@ -12,6 +12,7 @@ Super basic fb-type site created using MEAN stack + Passport
     $ npm install
 
   We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
+    
     $ grunt server
 
   When not using grunt you can use:
